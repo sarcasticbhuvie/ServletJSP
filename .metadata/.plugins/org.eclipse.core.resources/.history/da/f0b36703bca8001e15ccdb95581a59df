@@ -1,0 +1,30 @@
+package in.backend;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+@WebServlet("/login")
+public class MyServlet extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String name=req.getParameter("name");
+		String email=req.getParameter("email");
+		PrintWriter out = res.getWriter();
+		if(name.equals("bhupendra")&&email.equals("bhupendra@gmail.com")) {
+			System.out.println("SUCCESS!");
+			
+			out.println("Name : "+name);
+			out.println("email : "+email);
+		}
+		else {
+			out.println("Please enter a valid name and email");
+			System.out.println("Failed!");
+		}
+	
+	}
+}

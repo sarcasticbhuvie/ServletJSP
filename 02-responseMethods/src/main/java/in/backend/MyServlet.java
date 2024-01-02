@@ -1,0 +1,32 @@
+package in.backend;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+@WebServlet("/login")
+public class MyServlet extends HttpServlet{
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String name=(String) req.getParameter("name");
+		String email=(String) req.getParameter("email");
+		PrintWriter out = res.getWriter();
+		if(name.equals("bhupendra")&&email.equals("bhupendra@gmail.com")) {
+			
+			RequestDispatcher rd=req.getRequestDispatcher("/welcome.jsp");
+			rd.forward(req, res);
+			
+		}
+		else {	
+			res.setContentType("text/html");
+			out.println("<h2 style='color:red;'>Enter valid id's....</h2>");
+			RequestDispatcher rd=req.getRequestDispatcher("/index.html");
+			rd.include(req, res);
+		}
+	}
+}
